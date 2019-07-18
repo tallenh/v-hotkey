@@ -2,7 +2,7 @@
   "name": "v-hotkey",
   "version": "0.6.0",
   "description": "Vue 2.x directive - binding hotkeys for components.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "webpack -p --config ./build/webpack.config.prod.js",
