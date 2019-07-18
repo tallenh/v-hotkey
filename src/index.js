@@ -27,9 +27,6 @@ const getKeyMap = (keymap, alias) => Object.keys(keymap).map(input => {
 function bindEvent (el, binding, alias) {
   el._keymap = getKeyMap(binding.value, alias)
   el._keyHandler = e => {
-    if (binding.modifiers.prevent) {
-      e.preventDefault()
-    }
     if (binding.modifiers.stop) {
       const {nodeName, isContentEditable} = document.activeElement
       if (isContentEditable) {
@@ -50,6 +47,9 @@ function bindEvent (el, binding, alias) {
         !!hotkey.meta === e.metaKey &&
         hotkey.callback[e.type]
       callback && callback(e)
+      if (callback && binding.modifiers.prevent) {
+        e.preventDefault()
+      }
     }
   }
   document.addEventListener('keydown', el._keyHandler)
